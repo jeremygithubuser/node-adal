@@ -1,5 +1,7 @@
 var express = require('express');
 var path = require('path');
+var fs = require('fs');
+var https = require('https');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
@@ -21,10 +23,11 @@ app.use(function (req, res, next) {
 });
 
 app.use(cookieParser('toutankhamon'))
-var cookieParser = require('cookie-parser');
+
 app.use(cookieSession({
     name: 'node-adal-cookie-session',
-    maxAge: 5000,
+    domain : 'node-adal.cloudapp.net',
+    maxAge: 3600000,
     keys: ['toutankhamon'],
     httpOnly: true
 }))
@@ -44,12 +47,8 @@ app.use(bodyParser.json({
 app.use(express.static(path.join(__dirname, '/')));
 
 app.get('/redirectToAzureAuthEndPoint', adal.redirectToAzureAuthEndPoint);
-app.post('/login', adal.login);
 
-app.get('/api/setUserInfos', function (req, res) {
-    req.session.user = { name: "jim" }
-    res.send(JSON.stringify({ userName: req.session.user.name }));
-});
+app.post('/login', adal.login);
 
 app.get('/api/setUserInfos', function (req, res) {
     req.session.user = { name: "jim" }
@@ -62,8 +61,11 @@ app.get('/api/userInfos', authMiddleware, function (req, res) {
 
 app.get('/api/signOut', function (req, res) {
     req.session = null
-    res.send(JSON.stringify({ userName: req.session.user.name }));
 });
 
 
-app.listen(5858);
+//app.listen(80);
+https.createServer({
+      key: fs.readFileSync('key.pem'),
+      cert: fs.readFileSync('cert.pem')
+}, app).listen(443);

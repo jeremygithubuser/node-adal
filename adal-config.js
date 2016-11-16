@@ -1,9 +1,9 @@
-var clientId = '114cf598-4fff-42c3-80e9-9cd1025206af';
-var clientSecret = 'GUu9ZtM3tAQMtK9+rVx+9YhBxOUdrgEHcwlHGsNwlig='
+var clientId = 'c02bbe8f-e652-450a-948c-32b466d2ba4a';
+var clientSecret = 'Lyk7haokXTaRoydZaSpkr04aUzSzx6l+irQkmX2pyqU='
 var authorityHostUrl = 'https://login.windows.net';
-var tenant = 'd540fc2e-db24-4ad7-8c51-99f00b13f134';
+var tenant = 'fcd5335e-545d-4769-ba4d-3f1f2f453f48';
 var authorityUrl = authorityHostUrl + '/' + tenant;
-var redirectUri = 'http://adal-node.com:5858/login';
+var redirectUri = 'https://node-adal.cloudapp.net/login';
 var resource = 'https://graph.microsoft.com/';
 var responseMode = 'form_post';
 var scope = 'openid';
