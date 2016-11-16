@@ -5,7 +5,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var authMiddleware = require('./authMiddleware');
-var adalConfig = require('./adal-config');
+var adalConfig = require('./client-app-config');
 var adal = require('./adal')(adalConfig);
 var app = express();
 console.log(adalConfig.templateAuthzUrl);
