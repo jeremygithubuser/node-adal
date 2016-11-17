@@ -64,8 +64,8 @@ app.get('/api/signOut', function (req, res) {
 });
 
 
-//app.listen(80);
-https.createServer({
+app.listen(5858);
+/*https.createServer({
       key: fs.readFileSync('key.pem'),
       cert: fs.readFileSync('cert.pem')
-}, app).listen(443);
+}, app).listen(443);*/
